@@ -24,7 +24,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         self.window = window
         window.makeKeyAndVisible()
 
-        let vc = LoginHostingController(viewModel: LoginViewModel())
+        //        let vc = LoginHostingController(viewModel: LoginViewModel())
+        let vc = StoryboardScene.CommonTask5.initialScene.instantiate()
         window.rootViewController = vc
     }
 
