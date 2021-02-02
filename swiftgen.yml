@@ -1,0 +1,24 @@
+input_dir: MapWolf-ios
+output_dir: MapWolf-ios/Resources/Generated/
+# strings:
+#  inputs: Resources/Strings/en.lproj
+#  filter: .+\.strings$
+#  outputs:
+#    - templateName: structured-swift4
+#      output: L10n-Constants.swift
+xcassets:
+  - inputs:
+      - Resources/Colors.xcassets
+      - Resources/Images.xcassets
+      - Resources/Assets.xcassets
+    outputs:
+      - templateName: swift4
+        output: Assets-Constants.swift
+ib:
+  inputs: View
+  filter: .+\.storyboard$
+  outputs:
+    - templateName: scenes-swift4
+      output: Storyboard Scenes.swift
+    - templateName: segues-swift4
+      output: Storyboard Segues.swift

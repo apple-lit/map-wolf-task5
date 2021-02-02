@@ -1,0 +1,68 @@
+name: MapWolf-ios
+options:
+  bundleIdPrefix: com.masakaz
+  developmentLanguage: ja
+packages:
+  EFQRCode:
+    url: https://github.com/EFPrefix/EFQRCode
+    from: 6.0.0
+  FirebaseAnalytics: 
+    url: https://github.com/firebase/firebase-ios-sdk.git
+    from: 7.4.0
+  FirebaseAuth: 
+    url: https://github.com/firebase/firebase-ios-sdk.git
+    from: 7.4.0  
+  FirebaseFirestore: 
+    url: https://github.com/firebase/firebase-ios-sdk.git
+    from: 7.4.0
+  FirebaseFirestoreSwift-Beta: 
+    url: https://github.com/firebase/firebase-ios-sdk.git
+    from: 7.4.0
+  RxSwift:
+    url: https://github.com/ReactiveX/RxSwift
+    from: 6.0.0
+  RxCocoa:
+    url: https://github.com/ReactiveX/RxSwift
+    from: 6.0.0
+  RxRelay:
+    url: https://github.com/ReactiveX/RxSwift
+    from: 6.0.0
+  SFSafeSymbols:
+    url: https://github.com/piknotech/SFSafeSymbols
+    from: 2.1.1
+targets:
+    MapWolf-ios:
+      type: application
+      platform: iOS
+      sources:
+        - MapWolf-ios/
+      settings:
+        base:
+          MARKETING_VERSION: 1.0.0
+          CURRENT_PROJECT_VERSION: 1
+          INFOPLIST_FILE: MapWolf-ios/Info.plist     
+          PRODUCT_BUNDLE_IDENTIFIER: com.masakaz.MapWolf-ios
+      preBuildScripts:
+        - name: Require Mint
+          script: |
+            if which mint >/dev/null; then
+              echo "Mint installed!"
+            else
+              echo "error: Mint not installed, run \`\$ brew install mint\`."
+              return 1
+            fi
+        - name: Run swift-format
+          script: |
+            xcrun --sdk macosx mint run swift-format --mode format --recursive --in-place .
+        - name: Run swiftint
+          script: |
+            xcrun --sdk macosx mint run swiftlint autocorrect 
+      dependencies:
+        - package: EFQRCode
+        - package: FirebaseAuth
+        - package: FirebaseFirestore
+        - package: FirebaseFirestoreSwift-Beta
+        - package: RxSwift
+        - package: RxRelay
+        - package: RxCocoa
+        - package: SFSafeSymbols

@@ -1,0 +1,9 @@
+#!/bin/bash
+
+while read local_ref local_sha1 remote_ref remote_sha1
+do
+  if [[ "${remote_ref##refs/heads/}" = "main" ]]; then
+    echo "mainに直pushはしないでー"
+    exit 1
+  fi
+done
